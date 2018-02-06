@@ -127,10 +127,23 @@ public class buildFrame extends JFrame {
         
         buttons[13].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                result += Double.parseDouble(output.getText());
-                output.setText("" + result);
+                if(output.getText() != "") {
+                    result = Double.parseDouble(output.getText());
+                }
+                mathOperation = "add";
+                output.setText("");
                 performingCalc = true;
             }
+        });
+        
+        buttons[17].addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+               if(mathOperation == "add") {
+                   result += Double.parseDouble(output.getText());
+               }
+               output.setText("" + result);
+           } 
+
         });
          
     }
