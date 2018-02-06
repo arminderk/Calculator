@@ -31,8 +31,6 @@ public class buildFrame extends JFrame {
     private static final int FRAME_WIDTH = 250;
     private static final int FRAME_HEIGHT = 275;
     private double result = 0;
-    private double numberOne;
-    private double numberTwo;
     private String mathOperation;
     private boolean performingCalc = true;
     
@@ -119,29 +117,102 @@ public class buildFrame extends JFrame {
         
         buttons[10].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                result /= Double.parseDouble(output.getText());
-                output.setText("" + result);
+                if(output.getText().isEmpty()) {
+                    return;
+                }
+                if(mathOperation != null) {
+                    if(mathOperation == "add") {
+                        result += Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "divide") {
+                        result /= Double.parseDouble(output.getText());
+                    }
+                }
+                else {
+                    result = Double.parseDouble(output.getText());
+                }
+                
+                output.setText("");
+                mathOperation = "divide";
+                performingCalc = true;
+            }
+        });
+        
+        buttons[11].addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(output.getText().isEmpty()) {
+                    return;
+                }
+                if(mathOperation != null) {
+                    if(mathOperation == "add") {
+                        result += Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "divide") {
+                        result /= Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "multiply") {
+                        result *= Double.parseDouble(output.getText());
+                    }
+                }
+                else {
+                    result = Double.parseDouble(output.getText());
+                }
+                
+                output.setText("");
+                mathOperation = "multiply";
                 performingCalc = true;
             }
         });
         
         buttons[13].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(output.getText() != "") {
+                if(output.getText().isEmpty()) {
+                    return;
+                }
+                if(mathOperation != null) {
+                    if(mathOperation == "add") {
+                        result += Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "divide") {
+                        result /= Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "multiply") {
+                        result *= Double.parseDouble(output.getText());
+                    }
+                }
+                else {
                     result = Double.parseDouble(output.getText());
                 }
-                mathOperation = "add";
+                
                 output.setText("");
+                mathOperation = "add";
                 performingCalc = true;
             }
         });
         
         buttons[17].addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
-               if(mathOperation == "add") {
-                   result += Double.parseDouble(output.getText());
-               }
-               output.setText("" + result);
+                if(output.getText().isEmpty()) {
+                    return;
+                }
+                if(mathOperation != null) {
+                    if(mathOperation == "add") {
+                        result += Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "divide") {
+                        result /= Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "multiply") {
+                        result *= Double.parseDouble(output.getText());
+                    }
+                }
+                else {
+                    result = Double.parseDouble(output.getText());
+                }
+                
+                output.setText("" + result);
+                performingCalc = true;
+                mathOperation = null;
            } 
 
         });
