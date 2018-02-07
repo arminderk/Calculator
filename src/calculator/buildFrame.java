@@ -115,6 +115,7 @@ public class buildFrame extends JFrame {
             });
         }
         
+        // Divide Operation
         buttons[10].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(output.getText().isEmpty()) {
@@ -127,6 +128,9 @@ public class buildFrame extends JFrame {
                     else if(mathOperation == "divide") {
                         result /= Double.parseDouble(output.getText());
                     }
+                    else if(mathOperation == "subtract") {
+                        result -= Double.parseDouble(output.getText());
+                    }
                 }
                 else {
                     result = Double.parseDouble(output.getText());
@@ -138,6 +142,7 @@ public class buildFrame extends JFrame {
             }
         });
         
+        // Multiplication Operation
         buttons[11].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(output.getText().isEmpty()) {
@@ -153,6 +158,9 @@ public class buildFrame extends JFrame {
                     else if(mathOperation == "multiply") {
                         result *= Double.parseDouble(output.getText());
                     }
+                    else if(mathOperation == "subtract") {
+                        result -= Double.parseDouble(output.getText());
+                    }
                 }
                 else {
                     result = Double.parseDouble(output.getText());
@@ -164,6 +172,37 @@ public class buildFrame extends JFrame {
             }
         });
         
+        // Subtraction Operation
+        buttons[12].addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(output.getText().isEmpty()) {
+                    return;
+                }
+                if(mathOperation != null) {
+                    if(mathOperation == "add") {
+                        result += Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "divide") {
+                        result /= Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "multiply") {
+                        result *= Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "subtract") {
+                        result -= Double.parseDouble(output.getText());
+                    }
+                }
+                else {
+                    result = Double.parseDouble(output.getText());
+                }
+                
+                output.setText("");
+                mathOperation = "subtract";
+                performingCalc = true;
+            }
+        });
+        
+        // Addition Operation
         buttons[13].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(output.getText().isEmpty()) {
@@ -179,6 +218,9 @@ public class buildFrame extends JFrame {
                     else if(mathOperation == "multiply") {
                         result *= Double.parseDouble(output.getText());
                     }
+                    else if(mathOperation == "subtract") {
+                        result -= Double.parseDouble(output.getText());
+                    }
                 }
                 else {
                     result = Double.parseDouble(output.getText());
@@ -190,6 +232,13 @@ public class buildFrame extends JFrame {
             }
         });
         
+        buttons[16].addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+               
+           } 
+        });
+        
+        // Equals Operation
         buttons[17].addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
                 if(output.getText().isEmpty()) {
@@ -204,6 +253,9 @@ public class buildFrame extends JFrame {
                     }
                     else if(mathOperation == "multiply") {
                         result *= Double.parseDouble(output.getText());
+                    }
+                    else if(mathOperation == "subtract") {
+                        result -= Double.parseDouble(output.getText());
                     }
                 }
                 else {
