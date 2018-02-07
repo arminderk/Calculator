@@ -118,157 +118,72 @@ public class buildFrame extends JFrame {
         // Divide Operation
         buttons[10].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(output.getText().isEmpty()) {
-                    return;
-                }
-                if(mathOperation != null) {
-                    if(mathOperation == "add") {
-                        result += Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "divide") {
-                        result /= Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "subtract") {
-                        result -= Double.parseDouble(output.getText());
-                    }
-                }
-                else {
-                    result = Double.parseDouble(output.getText());
-                }
-                
-                output.setText("");
-                mathOperation = "divide";
-                performingCalc = true;
+                mathOperations("divide");
             }
         });
         
         // Multiplication Operation
         buttons[11].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(output.getText().isEmpty()) {
-                    return;
-                }
-                if(mathOperation != null) {
-                    if(mathOperation == "add") {
-                        result += Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "divide") {
-                        result /= Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "multiply") {
-                        result *= Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "subtract") {
-                        result -= Double.parseDouble(output.getText());
-                    }
-                }
-                else {
-                    result = Double.parseDouble(output.getText());
-                }
-                
-                output.setText("");
-                mathOperation = "multiply";
-                performingCalc = true;
+                mathOperations("multiply");
             }
         });
         
         // Subtraction Operation
         buttons[12].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(output.getText().isEmpty()) {
-                    return;
-                }
-                if(mathOperation != null) {
-                    if(mathOperation == "add") {
-                        result += Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "divide") {
-                        result /= Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "multiply") {
-                        result *= Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "subtract") {
-                        result -= Double.parseDouble(output.getText());
-                    }
-                }
-                else {
-                    result = Double.parseDouble(output.getText());
-                }
-                
-                output.setText("");
-                mathOperation = "subtract";
-                performingCalc = true;
+                mathOperations("subtract");
             }
         });
         
         // Addition Operation
         buttons[13].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(output.getText().isEmpty()) {
-                    return;
-                }
-                if(mathOperation != null) {
-                    if(mathOperation == "add") {
-                        result += Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "divide") {
-                        result /= Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "multiply") {
-                        result *= Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "subtract") {
-                        result -= Double.parseDouble(output.getText());
-                    }
-                }
-                else {
-                    result = Double.parseDouble(output.getText());
-                }
-                
-                output.setText("");
-                mathOperation = "add";
-                performingCalc = true;
+                mathOperations("add");
             }
         });
         
-        buttons[16].addActionListener(new ActionListener() {
-           public void actionPerformed(ActionEvent e) {
-               
-           } 
-        });
+//        buttons[16].addActionListener(new ActionListener() {
+//           public void actionPerformed(ActionEvent e) {
+//               
+//           } 
+//        });
         
         // Equals Operation
         buttons[17].addActionListener(new ActionListener() {
-           public void actionPerformed(ActionEvent e) {
-                if(output.getText().isEmpty()) {
-                    return;
-                }
-                if(mathOperation != null) {
-                    if(mathOperation == "add") {
-                        result += Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "divide") {
-                        result /= Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "multiply") {
-                        result *= Double.parseDouble(output.getText());
-                    }
-                    else if(mathOperation == "subtract") {
-                        result -= Double.parseDouble(output.getText());
-                    }
-                }
-                else {
-                    result = Double.parseDouble(output.getText());
-                }
-                
-                output.setText("" + result);
-                performingCalc = true;
-                mathOperation = null;
-           } 
+            public void actionPerformed(ActionEvent e) {
+                mathOperations(null);
+            } 
 
         });
          
+    }
+    
+    private void mathOperations(String s) {
+        if(output.getText().isEmpty()) {
+            return;
+        }
+        if(mathOperation != null) {
+            if(mathOperation == "add") {
+                result += Double.parseDouble(output.getText());
+            }
+            else if(mathOperation == "divide") {
+                result /= Double.parseDouble(output.getText());
+            }
+            else if(mathOperation == "multiply") {
+                result *= Double.parseDouble(output.getText());
+            }
+            else if(mathOperation == "subtract") {
+                result -= Double.parseDouble(output.getText());
+            }
+        }
+        else {
+            result = Double.parseDouble(output.getText());
+        }
+                
+        output.setText("" + result);
+        performingCalc = true;
+        mathOperation = s;
     }
     
 }
