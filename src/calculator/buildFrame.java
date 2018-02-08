@@ -32,12 +32,12 @@ public class buildFrame extends JFrame {
     private static final int FRAME_HEIGHT = 275;
     private double result = 0;
     private String mathOperation;
-    private boolean performingCalc = true;
+    private boolean newInput = true;
     
     public buildFrame() {
         textPanel();
         buttonPanel();
-        performOperations();
+        buttonClickListeners();
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }  
     
@@ -69,6 +69,7 @@ public class buildFrame extends JFrame {
         buttons[17] = new JButton("=");
         buttons[18] = new JButton(".");
         
+        // Add the buttons by row
         buttonPanel.add(buttons[16]);
         buttonPanel.add(buttons[15]);
         buttonPanel.add(buttons[14]);
@@ -99,14 +100,15 @@ public class buildFrame extends JFrame {
         
     }
     
-    private void performOperations() {
+    private void buttonClickListeners() {
         
+        // Click Listeners for number buttons and adding to textfield
         for(int i = 0; i<10; i++) {
             buttons[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    if(performingCalc == true) {
+                    if(newInput == true) {
                         output.setText(e.getActionCommand());
-                        performingCalc = false;
+                        newInput = false;
                     }
                     else {
                         output.setText(output.getText() + e.getActionCommand());
@@ -118,48 +120,92 @@ public class buildFrame extends JFrame {
         // Divide Operation
         buttons[10].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mathOperations("divide");
+                mathCalculations("divide");
             }
         });
         
         // Multiplication Operation
         buttons[11].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mathOperations("multiply");
+                mathCalculations("multiply");
             }
         });
         
         // Subtraction Operation
         buttons[12].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mathOperations("subtract");
+                mathCalculations("subtract");
             }
         });
         
         // Addition Operation
         buttons[13].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mathOperations("add");
+                mathCalculations("add");
             }
         });
         
-//        buttons[16].addActionListener(new ActionListener() {
-//           public void actionPerformed(ActionEvent e) {
-//               
-//           } 
-//        });
+        // Percentage Operation
+        buttons[14].addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+//               mathCalculations("percent");
+//               if(newInput == true) {
+//                   result = Double.parseDouble(output.getText()) / 100;
+//                   output.setText("" + result);
+//                   System.out.println("Result: " + result);
+//                   newInput = false;
+//               }
+//               else {
+//                   result /= 100;
+//                   output.setText("" + result);
+//               } 
+                System.out.println("New Input: " + newInput);
+            } 
+        });
+        
+        // Mod Operation
+        buttons[15].addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+               mathCalculations("modulus");
+           } 
+        });
+        
+        // Clear Operation
+        buttons[16].addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                output.setText("0");
+                result = 0;
+                newInput = true;
+            }
+        });
         
         // Equals Operation
         buttons[17].addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mathOperations(null);
+                mathCalculations(null);
             } 
 
+        });
+        
+        // Decimal Operation
+        buttons[18].addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(newInput == true) {
+                    output.setText("0.");
+                    newInput = false;
+                }
+                else {
+                    String text = output.getText();
+                    if(text.indexOf(".") == -1) {
+                        output.setText(text.concat("."));
+                    }
+                }
+            }
         });
          
     }
     
-    private void mathOperations(String s) {
+    private void mathCalculations(String s) {
         if(output.getText().isEmpty()) {
             return;
         }
@@ -176,13 +222,19 @@ public class buildFrame extends JFrame {
             else if(mathOperation == "subtract") {
                 result -= Double.parseDouble(output.getText());
             }
+            else if(mathOperation == "modulus") {
+                result %= Double.parseDouble(output.getText());
+            }
+//            else if(mathOperation == "percent") {
+//                result = Double.parseDouble(String.format("%.2f", output.getText()));
+//            }
         }
         else {
             result = Double.parseDouble(output.getText());
         }
                 
         output.setText("" + result);
-        performingCalc = true;
+        newInput = true;
         mathOperation = s;
     }
     
