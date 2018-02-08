@@ -148,19 +148,9 @@ public class buildFrame extends JFrame {
         // Percentage Operation
         buttons[14].addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
-//               mathCalculations("percent");
-//               if(newInput == true) {
-//                   result = Double.parseDouble(output.getText()) / 100;
-//                   output.setText("" + result);
-//                   System.out.println("Result: " + result);
-//                   newInput = false;
-//               }
-//               else {
-//                   result /= 100;
-//                   output.setText("" + result);
-//               } 
-                System.out.println("New Input: " + newInput);
-            } 
+               output.setText("" + Double.parseDouble(output.getText()) / 100);
+               newInput = true; 
+            }
         });
         
         // Mod Operation
@@ -225,9 +215,6 @@ public class buildFrame extends JFrame {
             else if(mathOperation == "modulus") {
                 result %= Double.parseDouble(output.getText());
             }
-//            else if(mathOperation == "percent") {
-//                result = Double.parseDouble(String.format("%.2f", output.getText()));
-//            }
         }
         else {
             result = Double.parseDouble(output.getText());
