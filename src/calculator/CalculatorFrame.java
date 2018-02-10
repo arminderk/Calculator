@@ -15,6 +15,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 
@@ -24,14 +28,28 @@ import javax.swing.JPanel;
  */
 public class CalculatorFrame extends JFrame implements KeyListener, ActionListener {
     
+    // Buttons
     private JButton buttons[];
+    
+    //TextField
     private JTextField output;
+    
+    // Panels
     private JPanel textPanel;
     private JPanel buttonPanel;
-    private JPanel buttonMasterPanel;
     
-    private static final int FRAME_WIDTH = 250;
-    private static final int FRAME_HEIGHT = 275;
+    // Menu
+    private JMenuBar menuBar;
+    private JMenu appMenu;
+    private JMenu helpMenu;
+    private JMenuItem exitMenuItem;
+    private JMenuItem aboutMenuItem;
+    
+    // JFrame Size
+    private static final int FRAME_WIDTH = 275;
+    private static final int FRAME_HEIGHT = 300;
+    
+    // Math Operations
     private double result = 0;
     private String mathOperation;
     private boolean newInput = true;
@@ -39,6 +57,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     // Build the frame
     public CalculatorFrame() {
         addKeyListener(this);
+        addMenuBar();
         textPanel();
         buttonPanel();
         keyListeners();
@@ -46,15 +65,48 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }  
     
+    // setup the menu
+    private void addMenuBar() {
+        menuBar = new JMenuBar();
+        // menu
+        appMenu = new JMenu("App");
+        helpMenu = new JMenu("Help");
+        // menu items
+        exitMenuItem = new JMenuItem("Exit");
+        aboutMenuItem = new JMenuItem("About");
+        // add menu items to menu
+        appMenu.add(exitMenuItem);
+        helpMenu.add(aboutMenuItem);
+        // add menus to bar
+        menuBar.add(appMenu);
+        menuBar.add(helpMenu);
+        // menu item listeners
+        exitMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.exit(0);
+            }
+        });
+        aboutMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JOptionPane.showMessageDialog(null,"Thanks for using my app.");
+            }
+        });
+        setJMenuBar(menuBar);
+    }
+    
     // Text field at the top
     private void textPanel() {
+        textPanel = new JPanel(new BorderLayout());
         output = new JTextField("0");
         output.addKeyListener(this);
         output.setBackground(Color.gray);
         output.setOpaque(true);
         output.setPreferredSize(new Dimension(150, 100));
         output.setEditable(false);
-        add(output, BorderLayout.NORTH);
+        textPanel.add(output);
+        add(textPanel, BorderLayout.NORTH);
     }
     
     // Add the buttons using a GridLayout
@@ -222,9 +274,6 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     }
     
     // Handle key presses
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -236,46 +285,55 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
             }
         }
 
-        if(eventChar == 37) {
-            buttons[14].doClick();
-            doAction('%');
-        }
-        else if (eventChar == 42) {
-            buttons[11].doClick();
-            doAction('X');
-        }
-        else if(eventChar == 43) {
-            doAction('+');
-//            buttons[13].doClick();
-        }
-        else if(eventChar == 45) {
-            buttons[12].doClick();
-            doAction('-');
-        }
-        else if(eventChar == 46) {
-            doAction('.');
-            buttons[18].doClick();
-        }
-        else if(eventChar == 47) {
-            buttons[10].doClick();
-            doAction('/');
-        }
-        else if(eventChar == 61) {
-            buttons[17].doClick();
-            doAction('=');
-        }
-        else if(eventChar == 67 || eventChar == 99) {
-            buttons[16].doClick();
-            doAction('C');
-        }
-        else if(eventChar == 109) {
-            buttons[15].doClick();
-            doAction('m');
+        switch (eventChar) {
+            case 37:
+                buttons[14].doClick();
+//            doAction('%');
+                break;
+            case 42:
+                buttons[11].doClick();
+//            doAction('X');
+                break;
+            case 43:
+                //            doAction('+');
+                buttons[13].doClick();
+                break;
+            case 45:
+                buttons[12].doClick();
+//            doAction('-');
+                break;
+            case 46:
+                //            doAction('.');
+                buttons[18].doClick();
+                break;
+            case 47:
+                buttons[10].doClick();
+//            doAction('/');
+                break;
+            case 61:
+                buttons[17].doClick();
+//            doAction('=');
+                break;
+            case 67:
+            case 99:
+                buttons[16].doClick();
+//            doAction('C');
+                break;
+            case 109:
+                buttons[15].doClick();
+//            doAction('m');
+                break;
+            default:
+                break;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-    }        
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
     
 }
