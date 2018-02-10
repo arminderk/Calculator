@@ -17,7 +17,7 @@ public class Calculator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame calcFrame = new buildFrame();
+        JFrame calcFrame = new CalculatorFrame();
         calcFrame.setTitle("Calculator");
         calcFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         calcFrame.setVisible(true);
