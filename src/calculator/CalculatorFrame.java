@@ -49,10 +49,11 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     private static final int FRAME_WIDTH = 275;
     private static final int FRAME_HEIGHT = 300;
     
-    // Math Operations
-    private double result = 0;
-    private String mathOperation;
+    // Determine if new input
     private boolean newInput = true;
+    
+    //Calculation object
+    Calculation calc = new Calculation();
     
     // Build the frame
     public CalculatorFrame() {
@@ -188,19 +189,29 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
             }
         }
         else if(event == '/') {
-            mathCalculations("divide");
+            calc.performCalculation("divide", output.getText());
+            output.setText("" + calc.getResult());
+            newInput = true;
         }
         else if(event == 'X') {
-            mathCalculations("multiply");
+            calc.performCalculation("multiply", output.getText());
+            output.setText("" + calc.getResult());
+            newInput = true;
         }
         else if(event == '+') {
-            mathCalculations("add");
+            calc.performCalculation("add", output.getText());
+            output.setText("" + calc.getResult());
+            newInput = true;
         }
         else if(event == '-') {
-            mathCalculations("subtract");
+            calc.performCalculation("subtract", output.getText());
+            output.setText("" + calc.getResult());
+            newInput = true;
         }
         else if(event == 'm') {
-            mathCalculations("modulus");
+            calc.performCalculation("modulus", output.getText());
+            output.setText("" + calc.getResult());
+            newInput = true;
         }
         else if(event == '%') {
             output.setText("" + Double.parseDouble(output.getText()) / 100);
@@ -220,43 +231,14 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         }
         else if(event == 'C') {
             output.setText("0");
-            result = 0;
+            calc.setResult(0);
             newInput = true;
         }
         else if(event == '=') {
-            mathCalculations(null);
+            calc.performCalculation(null, output.getText());
+            output.setText("" + calc.getResult());
+            newInput = true;
         }
-    }
-    
-    // Method to perform Math Calculations
-    private void mathCalculations(String s) {
-        if(output.getText().isEmpty()) {
-            return;
-        }
-        if(mathOperation != null) {
-            if(mathOperation == "add") {
-                result += Double.parseDouble(output.getText());
-            }
-            else if(mathOperation == "divide") {
-                result /= Double.parseDouble(output.getText());
-            }
-            else if(mathOperation == "multiply") {
-                result *= Double.parseDouble(output.getText());
-            }
-            else if(mathOperation == "subtract") {
-                result -= Double.parseDouble(output.getText());
-            }
-            else if(mathOperation == "modulus") {
-                result %= Double.parseDouble(output.getText());
-            }
-        }
-        else {
-            result = Double.parseDouble(output.getText());
-        }
-                
-        output.setText("" + result);
-        newInput = true;
-        mathOperation = s;
     }
     
     // Handle button press
@@ -274,7 +256,6 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     }
     
     // Handle key presses
-
     @Override
     public void keyPressed(KeyEvent e) {
         char eventChar = e.getKeyChar();
@@ -288,40 +269,31 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         switch (eventChar) {
             case 37:
                 buttons[14].doClick();
-//            doAction('%');
                 break;
             case 42:
                 buttons[11].doClick();
-//            doAction('X');
                 break;
             case 43:
-                //            doAction('+');
                 buttons[13].doClick();
                 break;
             case 45:
                 buttons[12].doClick();
-//            doAction('-');
                 break;
             case 46:
-                //            doAction('.');
                 buttons[18].doClick();
                 break;
             case 47:
                 buttons[10].doClick();
-//            doAction('/');
                 break;
             case 61:
                 buttons[17].doClick();
-//            doAction('=');
                 break;
             case 67:
             case 99:
                 buttons[16].doClick();
-//            doAction('C');
                 break;
             case 109:
                 buttons[15].doClick();
-//            doAction('m');
                 break;
             default:
                 break;
