@@ -55,7 +55,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     //Calculation object
     Calculation calc = new Calculation();
     
-    // Build the frame
+    /***** Build the frame *****/
     public CalculatorFrame() {
         addKeyListener(this);
         addMenuBar();
@@ -66,11 +66,11 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }  
     
-    // setup the menu
+    /***** Setup the menu at the top *****/
     private void addMenuBar() {
         menuBar = new JMenuBar();
         // menu
-        appMenu = new JMenu("App");
+        appMenu = new JMenu("Application");
         helpMenu = new JMenu("Help");
         // menu items
         exitMenuItem = new JMenuItem("Exit");
@@ -97,7 +97,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         setJMenuBar(menuBar);
     }
     
-    // Text field at the top
+    /***** Text field above buttons *****/
     private void textPanel() {
         textPanel = new JPanel(new BorderLayout());
         output = new JTextField("0");
@@ -110,7 +110,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         add(textPanel, BorderLayout.NORTH);
     }
     
-    // Add the buttons using a GridLayout
+    /***** Add the buttons using a GridLayout *****/
     private void buttonPanel() {
         buttonPanel = new JPanel(new GridLayout(5, 4, 0, 0));
         buttons = new JButton[19];
@@ -174,7 +174,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         }
     }
     
-    // Common operation method for button and key listeners
+    /***** Common operation method for button and key listeners *****/
     private void doAction(char event) {
          
         if(event == '0' || event == '1' || event == '2' || event == '3' ||
@@ -241,7 +241,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         }
     }
     
-    // Handle button press
+    /***** Handle button press *****/
     @Override
     public void actionPerformed(ActionEvent e) {
         char action = e.getActionCommand().charAt(0);
@@ -255,7 +255,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         
     }
     
-    // Handle key presses
+    /***** Handle key presses *****/
     @Override
     public void keyPressed(KeyEvent e) {
         char eventChar = e.getKeyChar();
