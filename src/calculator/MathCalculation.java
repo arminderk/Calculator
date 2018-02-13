@@ -1,20 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Arminder Khinda
+Date: 02/13/2018
+Comp 585
+Purpose: Math calculations logic, invoked upon key and click event
  */
+
 package calculator;
 
-/**
- *
- * @author ArminderSingh
- */
-public class Calculation {
+
+public class MathCalculation {
     
     private double result;
     private String mathOperation;
     
-    public Calculation() {
+    public MathCalculation() {
         result = 0;
     }
     

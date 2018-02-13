@@ -1,8 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Arminder Khinda
+Date: 02/13/2018
+Comp 585
+Purpose: Create the GUI frame, add key and click listeners to buttons
  */
+
 package calculator;
 
 import java.awt.BorderLayout;
@@ -15,17 +17,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 
-/**
- *
- * @author ArminderSingh
- */
+
 public class CalculatorFrame extends JFrame implements KeyListener, ActionListener {
     
     // Buttons
@@ -39,21 +34,17 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     private JPanel buttonPanel;
     
     // Menu
-    private JMenuBar menuBar;
-    private JMenu appMenu;
-    private JMenu helpMenu;
-    private JMenuItem exitMenuItem;
-    private JMenuItem aboutMenuItem;
+    private MenuBar menuBar;
     
     // JFrame Size
-    private static final int FRAME_WIDTH = 275;
+    private static final int FRAME_WIDTH = 250;
     private static final int FRAME_HEIGHT = 300;
     
     // Determine if new input
     private boolean newInput = true;
     
     //Calculation object
-    Calculation calc = new Calculation();
+    MathCalculation calc = new MathCalculation();
     
     /***** Build the frame *****/
     public CalculatorFrame() {
@@ -66,39 +57,9 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }  
     
-    /***** Setup the menu at the top *****/
+    /***** Setup the menu bar at the top *****/
     private void addMenuBar() {
-        menuBar = new JMenuBar();
-        
-        // menu
-        appMenu = new JMenu("Application");
-        helpMenu = new JMenu("Help");
-        
-        // menu items
-        exitMenuItem = new JMenuItem("Exit");
-        aboutMenuItem = new JMenuItem("About");
-        
-        // add menu items to menu
-        appMenu.add(exitMenuItem);
-        helpMenu.add(aboutMenuItem);
-        
-        // add menus to bar
-        menuBar.add(appMenu);
-        menuBar.add(helpMenu);
-        
-        // menu item listeners
-        exitMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.exit(0);
-            }
-        });
-        aboutMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null,"Thanks for using my app.");
-            }
-        });
+        menuBar = new MenuBar();
         setJMenuBar(menuBar);
     }
     
@@ -163,8 +124,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         buttonPanel.add(buttons[18]);
         buttonPanel.add(buttons[17]);
         
-        add(buttonPanel, BorderLayout.SOUTH);
-        
+        add(buttonPanel, BorderLayout.SOUTH);    
     }
     
     private void keyListeners() {
@@ -256,8 +216,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         }
         else {
             doAction('m');
-        }
-        
+        }  
     }
     
     /***** Handle key presses *****/
@@ -311,6 +270,5 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     
     @Override
     public void keyTyped(KeyEvent e) {
-    }
-    
+    } 
 }

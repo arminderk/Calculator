@@ -1,16 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Arminder Khinda
+Date: 02/13/2018
+Comp 585
+Purpose: Declare and run the calculator frame
  */
+
 package calculator;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author ArminderSingh
- */
+
 public class Calculator {
 
     /**

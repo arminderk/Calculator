@@ -1,8 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Arminder Khinda
+Date: 02/13/2018
+Comp 585
+Purpose: Separate menu bar object to put at the top of the calculator
  */
+
 package calculator;
 
 import java.awt.event.ActionEvent;
@@ -12,10 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ArminderSingh
- */
+
 public class MenuBar extends JMenuBar {
     
     // Menu
@@ -27,18 +26,23 @@ public class MenuBar extends JMenuBar {
     
     public MenuBar() {
         menuBar = new JMenuBar();
+        
         // menu
-        appMenu = new JMenu("App");
+        appMenu = new JMenu("Application");
         helpMenu = new JMenu("Help");
+        
         // menu items
         exitMenuItem = new JMenuItem("Exit");
         aboutMenuItem = new JMenuItem("About");
+        
         // add menu items to menu
         appMenu.add(exitMenuItem);
         helpMenu.add(aboutMenuItem);
+        
         // add menus to bar
         menuBar.add(appMenu);
         menuBar.add(helpMenu);
+        
         // menu item listeners
         exitMenuItem.addActionListener(new ActionListener() {
             @Override
@@ -52,6 +56,7 @@ public class MenuBar extends JMenuBar {
                 JOptionPane.showMessageDialog(null,"Thanks for using my app.");
             }
         });
-    }
-
+        
+        this.add(menuBar);
+    }       
 }
