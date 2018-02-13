@@ -69,18 +69,23 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     /***** Setup the menu at the top *****/
     private void addMenuBar() {
         menuBar = new JMenuBar();
+        
         // menu
         appMenu = new JMenu("Application");
         helpMenu = new JMenu("Help");
+        
         // menu items
         exitMenuItem = new JMenuItem("Exit");
         aboutMenuItem = new JMenuItem("About");
+        
         // add menu items to menu
         appMenu.add(exitMenuItem);
         helpMenu.add(aboutMenuItem);
+        
         // add menus to bar
         menuBar.add(appMenu);
         menuBar.add(helpMenu);
+        
         // menu item listeners
         exitMenuItem.addActionListener(new ActionListener() {
             @Override
@@ -112,7 +117,7 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     
     /***** Add the buttons using a GridLayout *****/
     private void buttonPanel() {
-        buttonPanel = new JPanel(new GridLayout(5, 4, 0, 0));
+        buttonPanel = new JPanel(new GridLayout(5, 4));
         buttons = new JButton[19];
         
         // Number Buttons
