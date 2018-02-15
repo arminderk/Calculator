@@ -37,8 +37,8 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
     private MenuBar menuBar;
     
     // JFrame Size
-    private static final int FRAME_WIDTH = 250;
-    private static final int FRAME_HEIGHT = 300;
+    private static final int FRAME_WIDTH = 270;
+    private static final int FRAME_HEIGHT = 400;
     
     // Determine if new input
     private boolean newInput = true;
@@ -84,6 +84,9 @@ public class CalculatorFrame extends JFrame implements KeyListener, ActionListen
         // Number Buttons
         for(int i = 0; i<10; i++) {
             buttons[i] = new JButton(String.valueOf(i));
+//            buttons[i].setPreferredSize(new Dimension(50, 50));
+//            buttons[i].setBackground(Color.lightGray);
+//            buttons[i].setOpaque(true);
         }
         
         // Operation Buttons
